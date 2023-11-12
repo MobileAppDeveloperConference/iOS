@@ -12,11 +12,15 @@ struct TaskEmptyView: View {
         HStack {
             Spacer()
             VStack {
-                Image(systemName: "photo")
+                Image("ic_Doo_empty")
                 Text("투두를 추가해보세요.")
+                    .font(.Todo.m13)
+                    .foregroundStyle(Color.Todo.skyblue)
+                    
             }
             Spacer()
         }
+        .background(Color.Todo.ashblue)
     }
 }
 

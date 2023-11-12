@@ -14,7 +14,7 @@ struct MainView: View {
                 Section {
                     TaskEmptyView()
                 } header: {
-                    Text("하는중")
+                    Text("하는 중")
                 }
                 
                 Section {
@@ -25,7 +25,9 @@ struct MainView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Text("Todo")
+                    Text("Todoo")
+                        .font(.Todo.title)
+                        .foregroundStyle(Color.Todo.black)
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("완료 숨기기") {

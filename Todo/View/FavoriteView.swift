@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct FavoriteView: View {
+    
+    
     var body: some View {
         NavigationStack {
             List {
@@ -16,6 +18,8 @@ struct FavoriteView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Text("Star")
+                        .font(.Todo.title)
+                        .foregroundStyle(Color.Todo.black)
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("완료 숨기기") {
