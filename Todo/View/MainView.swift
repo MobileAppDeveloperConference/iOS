@@ -11,7 +11,17 @@ struct MainView: View {
     var body: some View {
         NavigationStack {
             List {
+                Section {
+                    TaskEmptyView()
+                } header: {
+                    Text("하는중")
+                }
                 
+                Section {
+                    
+                } header: {
+                    Text("완료")
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
