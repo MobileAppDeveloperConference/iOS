@@ -28,6 +28,7 @@ struct FavoriteView: View {
                 }
             }
         }
+        .overlay(CircleButton().offset(x: -24, y: -24), alignment: .bottomTrailing)
     }
 }
 

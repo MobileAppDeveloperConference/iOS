@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selectedIndex = 0
+    @State private var selectedTab = 0
     
     var body: some View {
-        TabView(selection: $selectedIndex) {
+        TabView(selection: $selectedTab) {
             MainView()
                 .tabItem {
-                    if selectedIndex == 0 {
+                    if selectedTab == 0 {
                         Image("ic_tap_home_fill")
                     } else {
                         Image("ic_tap_home")
@@ -22,11 +22,10 @@ struct ContentView: View {
                     Text("기본")
                 }
                 .tag(0)
-                
             
             FavoriteView()
                 .tabItem {
-                    if selectedIndex == 1 {
+                    if selectedTab == 1 {
                         Image("ic_tap_star_fill")
                     } else {
                         Image("ic_tap_star")
@@ -36,7 +35,6 @@ struct ContentView: View {
                 .tag(1)
         }
         .accentColor(.Todo.black)
-        
     }
 }
 
