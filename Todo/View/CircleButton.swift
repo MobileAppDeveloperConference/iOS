@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CircleButton: View {
+    @State private var isShow: Bool = false
+    
     var body: some View {
         Circle()
             .frame(width: 66, height: 66)
@@ -16,8 +18,9 @@ struct CircleButton: View {
             )
             .foregroundStyle(Color.Todo.red)
             .onTapGesture {
-                print("tapped")
+                isShow.toggle()
             }
+            .fullScreenCover(isPresented: $isShow) { TaskAddView() }
     }
 }
 
