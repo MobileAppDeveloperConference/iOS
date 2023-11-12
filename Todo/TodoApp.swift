@@ -12,13 +12,6 @@ struct TodoApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .onAppear {
-                    getFpont()
-                }
         }
-    }
-    
-    func getFpont() {
-        UIFont.familyNames.forEach{ print($0); UIFont.fontNames(forFamilyName: $0).forEach{ print("  ", $0) } }
     }
 }

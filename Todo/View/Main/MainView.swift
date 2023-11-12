@@ -12,7 +12,8 @@ struct MainView: View {
         NavigationStack {
             List {
                 Section {
-                    TaskEmptyView()
+//                    TaskEmptyView()
+                    TaskListItemView()
                 } header: {
                     Text("하는 중")
                 }
