@@ -9,7 +9,21 @@ import SwiftUI
 
 struct FavoriteView: View {
     var body: some View {
-        Text("중요")
+        NavigationStack {
+            List {
+                
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Text("Star")
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("완료 숨기기") {
+                        
+                    }
+                }
+            }
+        }
     }
 }
 

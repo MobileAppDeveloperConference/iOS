@@ -9,7 +9,21 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        Text("기본")
+        NavigationStack {
+            List {
+                
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Text("Todo")
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("완료 숨기기") {
+                        
+                    }
+                }
+            }
+        }
     }
 }
 
