@@ -9,7 +9,7 @@ import Foundation
 
 
 protocol Manager {
-    var tasks: [TaskModel] { get }
+    var tasks: [TaskModel] { get set }
     
     func load() -> [TaskModel]
     func save(task: TaskModel)
@@ -19,7 +19,7 @@ protocol Manager {
 
 @Observable
 class TaskManager: Manager {
-    private(set) var tasks: [TaskModel]
+    var tasks: [TaskModel]
     
     init() {
         tasks = []

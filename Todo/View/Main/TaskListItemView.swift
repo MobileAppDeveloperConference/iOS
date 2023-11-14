@@ -8,20 +8,18 @@
 import SwiftUI
 
 struct TaskListItemView: View {
+    @Environment(TaskManager.self) var taskManager
     var task: TaskModel
     
-    @State private var isDone: Bool = false
-    @State private var isFavorite: Bool = false
-    
+    var taskIndex: Int {
+        taskManager.tasks.firstIndex(where: { $0.id == task.id })!
+    }
+
     var body: some View {
+        @Bindable var taskManager = taskManager
+        
         HStack {
-            Button {
-                isDone.toggle()
-            } label: {
-                Image(isDone ? "ic_notyet_fill" : "ic_notyet")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-            }
+            DoneButton(isDone: $taskManager.tasks[taskIndex].isDone)
             
             Text(task.task)
                 .font(.Todo.r16)
@@ -29,15 +27,37 @@ struct TaskListItemView: View {
             
             Spacer()
             
-            Button {
-                isFavorite.toggle()
-            } label: {
-                Image(isFavorite ? "ic_tap_star_fill" : "ic_tap_star")
-                    .foregroundStyle(isFavorite ? Color.Todo.red : Color.Todo.black)
-            }
-            
+            FavoriteButton(isFavorite: $taskManager.tasks[taskIndex].isFavorite)
         }
-        .buttonStyle(.borderless) // 리스트에서 아이템을 탭했을때 모든 버튼들이 이벤트를 동시에 받는 것을 방지
+    }
+}
+
+struct DoneButton: View {
+    @Binding var isDone: Bool
+    
+    var body: some View {
+        Button {
+            print("done button")
+            isDone.toggle()
+        } label: {
+            Image(isDone ? "ic_notyet_fill" : "ic_notyet")
+                .resizable()
+                .frame(width: 30, height: 30)
+        }
+    }
+}
+
+struct FavoriteButton: View {
+    @Binding var isFavorite: Bool
+    
+    var body: some View {
+        Button {
+            print("favorite button")
+            isFavorite.toggle()
+        } label: {
+            Image(isFavorite ? "ic_tap_star_fill" : "ic_tap_star")
+                .foregroundStyle(isFavorite ? Color.Todo.red : Color.Todo.black)
+        }
     }
 }
 
