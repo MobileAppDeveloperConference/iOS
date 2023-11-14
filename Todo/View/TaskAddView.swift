@@ -9,11 +9,15 @@ import SwiftUI
 
 struct TaskAddView: View {
     @Environment(\.dismiss) var dismiss
+    @Environment(TaskManager.self) var taskManager
     
     @State private var isFavorite: Bool = false
     
     @State private var task: String = ""
     @State private var desc: String = ""
+    
+    @FocusState private var taskFocus: Bool
+    @FocusState private var descFocus: Bool
     
     var body: some View {
         NavigationStack {
@@ -23,10 +27,22 @@ struct TaskAddView: View {
                     .frame(height: 64)
                     .background(Color.Todo.grayFry)
                     .padding([.bottom], 16)
+                    .focused($taskFocus)
+                    .onSubmit {
+                        taskFocus = false
+                    }
+                
                 TextField("원한다면 투두에 설명도 추가할 수 있어요.", text: $desc, axis: .vertical)
 //                    .textFieldStyle(.roundedBorder)
-                    .frame(height: 336)
+                    .lineLimit(2...)
+//                    .frame(height: 336)
+                    
                     .background(Color.Todo.grayFry)
+                    .focused($descFocus)
+                    .onSubmit {
+                        descFocus = false
+                    }
+                
                 Spacer()
             }
             .toolbar {
@@ -46,6 +62,8 @@ struct TaskAddView: View {
                         dismiss()
                     }
                     Button("완료") {
+                        let taskModel = TaskModel(task: task, description: desc)
+                        taskManager.save(task: taskModel)
                         dismiss()
                     }
                     

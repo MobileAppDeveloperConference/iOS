@@ -9,7 +9,7 @@ import Foundation
 
 
 protocol Manager {
-    var taskList: [TaskModel] { get }
+    var tasks: [TaskModel] { get }
     
     func load() -> [TaskModel]
     func save(task: TaskModel)
@@ -17,32 +17,30 @@ protocol Manager {
     func update(task: TaskModel)
 }
 
+@Observable
 class TaskManager: Manager {
-    private(set) var taskList: [TaskModel]
+    private(set) var tasks: [TaskModel]
     
-    static let shared = TaskManager()
-    
-    private init() {
-        taskList = []
+    init() {
+        tasks = []
     }
     
     func load() -> [TaskModel] {
-        return taskList
+        return tasks
     }
     
     func save(task: TaskModel) {
-        taskList.append(task)
+        tasks.append(task)
     }
     
     func delete(task: TaskModel) {
-        taskList = taskList.filter { $0.id != task.id }
+        tasks = tasks.filter { $0.id != task.id }
     }
     
     func update(task: TaskModel) {
-        if let idx = taskList.firstIndex(where: { $0.id == task.id }) {
-            taskList[idx] = task
+        if let idx = tasks.firstIndex(where: { $0.id == task.id }) {
+            tasks[idx] = task
         }
     }
-    
     
 }

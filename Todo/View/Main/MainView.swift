@@ -8,12 +8,27 @@
 import SwiftUI
 
 struct MainView: View {
+    @Environment(TaskManager.self) var taskManager
+    
     var body: some View {
+        @Bindable var taskManager = taskManager
+        
         NavigationStack {
             List {
                 Section {
-                    //                    TaskEmptyView()
-                    TaskListItemView()
+                    if taskManager.tasks.isEmpty {
+                        TaskEmptyView()
+                    } else {
+                        ForEach(taskManager.tasks) {
+                            TaskListItemView(task: $0)
+                                .swipeActions {
+                                    Button("삭제") {
+                                        
+                                    }.tint(Color.Todo.red)
+                                }
+                        }
+                    }
+                    
                 } header: {
                     Text("하는 중")
                 }

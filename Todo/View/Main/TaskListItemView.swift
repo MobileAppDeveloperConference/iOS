@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TaskListItemView: View {
+    var task: TaskModel
     
     @State private var isDone: Bool = false
     @State private var isFavorite: Bool = false
@@ -22,7 +23,7 @@ struct TaskListItemView: View {
                     .frame(width: 30, height: 30)
             }
             
-            Text("Todo 아이템")
+            Text(task.task)
                 .font(.Todo.r16)
                 .lineLimit(1)
             
@@ -41,5 +42,5 @@ struct TaskListItemView: View {
 }
 
 #Preview {
-    TaskListItemView()
+    TaskListItemView(task: TaskModel(task: "테스트", description: "설명"))
 }
