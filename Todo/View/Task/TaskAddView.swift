@@ -23,7 +23,6 @@ struct TaskAddView: View {
         NavigationStack {
             VStack {
                 TextField("투두를 입력해주세요.", text: $task)
-//                    .textFieldStyle(.roundedBorder)
                     .frame(height: 64)
                     .background(Color.Todo.grayFry)
                     .padding([.bottom], 16)
@@ -33,10 +32,8 @@ struct TaskAddView: View {
                     }
                 
                 TextField("원한다면 투두에 설명도 추가할 수 있어요.", text: $desc, axis: .vertical)
-//                    .textFieldStyle(.roundedBorder)
+                    .frame(height: 330, alignment: .top)
                     .lineLimit(2...)
-//                    .frame(height: 336)
-                    
                     .background(Color.Todo.grayFry)
                     .focused($descFocus)
                     .onSubmit {

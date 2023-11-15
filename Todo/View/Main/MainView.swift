@@ -19,21 +19,23 @@ struct MainView: View {
     }
     
     var body: some View {
-        @Bindable var taskManager = taskManager
-        
         NavigationStack {
             List {
                 Section {
                     if tasks.isEmpty {
                         TaskEmptyView()
                     } else {
-                        ForEach(tasks) {
-                            TaskListItemView(task: $0)
-                                .swipeActions {
-                                    Button("삭제") {
-                                        
-                                    }.tint(Color.Todo.red)
-                                }
+                        ForEach(tasks) { task in
+                            NavigationLink {
+                                TaskEditView(task: task)
+                            } label: {
+                                TaskListItemView(task: task)
+                                    .swipeActions {
+                                        Button("삭제") {
+                                            
+                                        }.tint(Color.Todo.red)
+                                    }
+                            }
                         }
                     }
                     
@@ -43,13 +45,17 @@ struct MainView: View {
                 
                 if isShowDoneTask {
                     Section {
-                        ForEach(doneTasks) {
-                            TaskListItemView(task: $0)
-                                .swipeActions {
-                                    Button("삭제") {
-                                        
-                                    }.tint(Color.Todo.red)
-                                }
+                        ForEach(doneTasks) { task in
+                            NavigationLink {
+                                TaskEditView(task: task)
+                            } label: {
+                                TaskListItemView(task: task)
+                                    .swipeActions {
+                                        Button("삭제") {
+                                            
+                                        }.tint(Color.Todo.red)
+                                    }
+                            }
                         }
                     } header: {
                         Text("완료")

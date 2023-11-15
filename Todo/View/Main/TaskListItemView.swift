@@ -32,33 +32,6 @@ struct TaskListItemView: View {
     }
 }
 
-struct DoneButton: View {
-    @Binding var isDone: Bool
-    
-    var body: some View {
-        Button {
-            isDone.toggle()
-        } label: {
-            Image(isDone ? "ic_notyet_fill" : "ic_notyet")
-                .resizable()
-                .frame(width: 30, height: 30)
-        }
-    }
-}
-
-struct FavoriteButton: View {
-    @Binding var isFavorite: Bool
-    
-    var body: some View {
-        Button {
-            isFavorite.toggle()
-        } label: {
-            Image(isFavorite ? "ic_tap_star_fill" : "ic_tap_star")
-                .foregroundStyle(isFavorite ? Color.Todo.red : Color.Todo.black)
-        }
-    }
-}
-
 #Preview {
     TaskListItemView(task: TaskModel(task: "테스트", description: "설명"))
 }
