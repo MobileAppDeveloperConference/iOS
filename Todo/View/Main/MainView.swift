@@ -14,7 +14,7 @@ struct MainView: View {
     var tasks: [TaskModel] { taskManager.tasks.filter { $0.isDone == false } }
     var doneTasks: [TaskModel] {taskManager.tasks.filter { $0.isDone == true } }
     
-    var isShowDontTaskButtonTitle: String {
+    var isShowDoneTaskButtonTitle: String {
         isShowDoneTask ? "완료 숨기기" : "완료 보기"
     }
     
@@ -64,7 +64,7 @@ struct MainView: View {
                         .foregroundStyle(Color.Todo.black)
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(isShowDontTaskButtonTitle) {
+                    Button(isShowDoneTaskButtonTitle) {
                         isShowDoneTask.toggle()
                     }
                 }

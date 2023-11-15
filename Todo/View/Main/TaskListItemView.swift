@@ -37,7 +37,6 @@ struct DoneButton: View {
     
     var body: some View {
         Button {
-            print("done button")
             isDone.toggle()
         } label: {
             Image(isDone ? "ic_notyet_fill" : "ic_notyet")
@@ -52,7 +51,6 @@ struct FavoriteButton: View {
     
     var body: some View {
         Button {
-            print("favorite button")
             isFavorite.toggle()
         } label: {
             Image(isFavorite ? "ic_tap_star_fill" : "ic_tap_star")
