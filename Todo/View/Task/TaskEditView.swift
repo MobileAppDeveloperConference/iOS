@@ -12,9 +12,7 @@ struct TaskEditView: View {
     @Environment(TaskManager.self) var taskManager
     
     var task: TaskModel
-    var taskIndex: Int {
-        taskManager.tasks.firstIndex(where: { $0.id == task.id }) ?? 0
-    }
+    var taskIndex: Int 
     
     @FocusState private var taskFocus: Bool
     @FocusState private var descFocus: Bool
@@ -34,7 +32,7 @@ struct TaskEditView: View {
                     Spacer()
                     
                     Button {
-//                        self.taskManager.delete(task: task)
+                        taskManager.delete(task: task)
                         dismiss()
                     } label: {
                         Text("안할래")
@@ -83,5 +81,5 @@ struct TaskEditView: View {
 }
 
 #Preview {
-    TaskEditView(task: TaskModel(task: "", description: ""))
+    TaskEditView(task: TaskModel(task: "", description: ""), taskIndex: 0)
 }

@@ -27,13 +27,17 @@ struct FavoriteView: View {
                     if tasks.isEmpty {
                         TaskEmptyView()
                     } else {
-                        ForEach(tasks) {
-                            TaskListItemView(task: $0)
-                                .swipeActions {
-                                    Button("삭제") {
-                                        
-                                    }.tint(Color.Todo.red)
-                                }
+                        ForEach(Array(zip(tasks.indices, tasks)), id: \.1) { index, task in
+                            NavigationLink {
+                                TaskEditView(task: task, taskIndex: index)
+                            } label: {
+                                TaskListItemView(task: task, taskIndex: index)
+                                    .swipeActions {
+                                        Button("삭제") {
+                                            
+                                        }.tint(Color.Todo.red)
+                                    }
+                            }
                         }
                     }
                     
@@ -43,13 +47,17 @@ struct FavoriteView: View {
                 
                 if isShowDoneTask {
                     Section {
-                        ForEach(doneTasks) {
-                            TaskListItemView(task: $0)
-                                .swipeActions {
-                                    Button("삭제") {
-                                        
-                                    }.tint(Color.Todo.red)
-                                }
+                        ForEach(Array(zip(doneTasks.indices, doneTasks)), id: \.1) { index, task in
+                            NavigationLink {
+                                TaskEditView(task: task, taskIndex: index)
+                            } label: {
+                                TaskListItemView(task: task, taskIndex: index)
+                                    .swipeActions {
+                                        Button("삭제") {
+                                            
+                                        }.tint(Color.Todo.red)
+                                    }
+                            }
                         }
                     } header: {
                         Text("완료")

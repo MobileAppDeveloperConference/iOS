@@ -9,11 +9,9 @@ import SwiftUI
 
 struct TaskListItemView: View {
     @Environment(TaskManager.self) var taskManager
-    var task: TaskModel
     
-    var taskIndex: Int {
-        taskManager.tasks.firstIndex(where: { $0.id == task.id })!
-    }
+    var task: TaskModel
+    var taskIndex: Int 
 
     var body: some View {
         @Bindable var taskManager = taskManager
@@ -33,5 +31,5 @@ struct TaskListItemView: View {
 }
 
 #Preview {
-    TaskListItemView(task: TaskModel(task: "테스트", description: "설명"))
+    TaskListItemView(task: TaskModel(task: "테스트", description: "설명"), taskIndex: 0)
 }

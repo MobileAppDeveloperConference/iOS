@@ -25,11 +25,11 @@ struct MainView: View {
                     if tasks.isEmpty {
                         TaskEmptyView()
                     } else {
-                        ForEach(tasks) { task in
+                        ForEach(Array(zip(tasks.indices, tasks)), id: \.1) { index, task in
                             NavigationLink {
-                                TaskEditView(task: task)
+                                TaskEditView(task: task, taskIndex: index)
                             } label: {
-                                TaskListItemView(task: task)
+                                TaskListItemView(task: task, taskIndex: index)
                                     .swipeActions {
                                         Button("삭제") {
                                             
@@ -45,11 +45,11 @@ struct MainView: View {
                 
                 if isShowDoneTask {
                     Section {
-                        ForEach(doneTasks) { task in
+                        ForEach(Array(zip(doneTasks.indices, doneTasks)), id: \.1) { index, task in
                             NavigationLink {
-                                TaskEditView(task: task)
+                                TaskEditView(task: task, taskIndex: index)
                             } label: {
-                                TaskListItemView(task: task)
+                                TaskListItemView(task: task, taskIndex: index)
                                     .swipeActions {
                                         Button("삭제") {
                                             
