@@ -18,13 +18,20 @@ protocol Manager {
 }
 
 @Observable
-class TaskManager: Manager {
+class TaskManager {
     var tasks: [TaskModel]
     
     init() {
         tasks = []
         load()
     }
+
+    func getTaskIndexBy(task: TaskModel) -> Int {
+        return tasks.firstIndex(where: { $0.id == task.id }) ?? -1
+    }
+}
+
+extension TaskManager: Manager {
     
     func load() {
         let dummy = loadDummyTask()
@@ -36,7 +43,7 @@ class TaskManager: Manager {
     }
     
     func delete(task: TaskModel) {
-        tasks = tasks.filter { $0.id != task.id }
+        tasks.removeAll { task.id == $0.id }
     }
     
     func update(task: TaskModel) {
@@ -44,7 +51,6 @@ class TaskManager: Manager {
             tasks[idx] = task
         }
     }
-    
 }
 
 func loadDummyTask() -> [TaskModel] {

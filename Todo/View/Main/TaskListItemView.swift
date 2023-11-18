@@ -11,25 +11,28 @@ struct TaskListItemView: View {
     @Environment(TaskManager.self) var taskManager
     
     var task: TaskModel
-    var taskIndex: Int 
 
     var body: some View {
         @Bindable var taskManager = taskManager
+        let taskIndex = taskManager.getTaskIndexBy(task: task)
         
-        HStack {
-            DoneButton(isDone: $taskManager.tasks[taskIndex].isDone)
-            
-            Text(task.task)
-                .font(.Todo.r16)
-                .lineLimit(1)
-            
-            Spacer()
-            
-            FavoriteButton(isFavorite: $taskManager.tasks[taskIndex].isFavorite)
+        if taskIndex == -1 {
+        } else {
+            HStack {
+                DoneButton(isDone: $taskManager.tasks[taskIndex].isDone)
+                
+                Text("\(taskIndex) : \(task.task)")
+                    .font(.Todo.r16)
+                    .lineLimit(1)
+                
+                Spacer()
+                
+                FavoriteButton(isFavorite: $taskManager.tasks[taskIndex].isFavorite)
+            }
         }
     }
 }
 
 #Preview {
-    TaskListItemView(task: TaskModel(task: "테스트", description: "설명"), taskIndex: 0)
+    TaskListItemView(task: TaskModel(task: "테스트", description: "설명"))
 }

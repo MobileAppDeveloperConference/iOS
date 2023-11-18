@@ -27,11 +27,11 @@ struct FavoriteView: View {
                     if tasks.isEmpty {
                         TaskEmptyView()
                     } else {
-                        ForEach(Array(zip(tasks.indices, tasks)), id: \.1) { index, task in
+                        ForEach(tasks) { task in
                             NavigationLink {
-                                TaskEditView(task: task, taskIndex: index)
+                                TaskEditView(task: task)
                             } label: {
-                                TaskListItemView(task: task, taskIndex: index)
+                                TaskListItemView(task: task)
                                     .swipeActions {
                                         Button("삭제") {
                                             
@@ -47,11 +47,11 @@ struct FavoriteView: View {
                 
                 if isShowDoneTask {
                     Section {
-                        ForEach(Array(zip(doneTasks.indices, doneTasks)), id: \.1) { index, task in
+                        ForEach(doneTasks) { task in
                             NavigationLink {
-                                TaskEditView(task: task, taskIndex: index)
+                                TaskEditView(task: task)
                             } label: {
-                                TaskListItemView(task: task, taskIndex: index)
+                                TaskListItemView(task: task)
                                     .swipeActions {
                                         Button("삭제") {
                                             

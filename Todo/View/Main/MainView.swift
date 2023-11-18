@@ -19,22 +19,24 @@ struct MainView: View {
     }
     
     var body: some View {
+        @Bindable var taskManager = taskManager
+        
         NavigationStack {
             List {
                 Section {
                     if tasks.isEmpty {
                         TaskEmptyView()
                     } else {
-                        ForEach(Array(zip(tasks.indices, tasks)), id: \.1) { index, task in
+                        ForEach(tasks) { task in
                             NavigationLink {
-                                TaskEditView(task: task, taskIndex: index)
+                                TaskEditView(task: task)
                             } label: {
-                                TaskListItemView(task: task, taskIndex: index)
-                                    .swipeActions {
-                                        Button("삭제") {
-                                            
-                                        }.tint(Color.Todo.red)
-                                    }
+                                TaskListItemView(task: task)
+                            }
+                            .swipeActions {
+                                Button("삭제") {
+                                    taskManager.delete(task: task)
+                                }.tint(Color.Todo.red)
                             }
                         }
                     }
@@ -45,14 +47,14 @@ struct MainView: View {
                 
                 if isShowDoneTask {
                     Section {
-                        ForEach(Array(zip(doneTasks.indices, doneTasks)), id: \.1) { index, task in
+                        ForEach(doneTasks) { task in
                             NavigationLink {
-                                TaskEditView(task: task, taskIndex: index)
+                                TaskEditView(task: task)
                             } label: {
-                                TaskListItemView(task: task, taskIndex: index)
+                                TaskListItemView(task: task)
                                     .swipeActions {
                                         Button("삭제") {
-                                            
+                                            taskManager.delete(task: task)
                                         }.tint(Color.Todo.red)
                                     }
                             }
