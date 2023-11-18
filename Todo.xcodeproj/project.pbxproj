@@ -26,6 +26,8 @@
 		6FDD59D72B00AF9600D7148D /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDD59D62B00AF9600D7148D /* Font.swift */; };
 		6FDD59D92B00B12900D7148D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDD59D82B00B12900D7148D /* Color.swift */; };
 		6FDD59DD2B00BE3E00D7148D /* TaskListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDD59DC2B00BE3E00D7148D /* TaskListItemView.swift */; };
+		6FDEABBF2B08CB92006BBCBF /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 6FDEABBE2B08CB92006BBCBF /* PopupView */; };
+		6FDEABC12B08CC11006BBCBF /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDEABC02B08CC11006BBCBF /* Toast.swift */; };
 		6FF8073C2B02728400B2F956 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF8073B2B02728400B2F956 /* TaskModel.swift */; };
 		6FF8073E2B0272D700B2F956 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF8073D2B0272D700B2F956 /* TaskManager.swift */; };
 /* End PBXBuildFile section */
@@ -52,6 +54,7 @@
 		6FDD59D62B00AF9600D7148D /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		6FDD59D82B00B12900D7148D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		6FDD59DC2B00BE3E00D7148D /* TaskListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListItemView.swift; sourceTree = "<group>"; };
+		6FDEABC02B08CC11006BBCBF /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		6FF8073B2B02728400B2F956 /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		6FF8073D2B0272D700B2F956 /* TaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FDEABBF2B08CB92006BBCBF /* PopupView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +136,7 @@
 				6FDD59DB2B00BE0900D7148D /* Favorite */,
 				6FB415412B05031A006FD091 /* Task */,
 				6FA7B7C42B00C9750069602F /* CircleButton.swift */,
+				6FDEABC02B08CC11006BBCBF /* Toast.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -200,6 +205,9 @@
 			dependencies = (
 			);
 			name = Todo;
+			packageProductDependencies = (
+				6FDEABBE2B08CB92006BBCBF /* PopupView */,
+			);
 			productName = Todo;
 			productReference = 6FDD59B32B009E9E00D7148D /* Todo.app */;
 			productType = "com.apple.product-type.application";
@@ -228,6 +236,9 @@
 				Base,
 			);
 			mainGroup = 6FDD59AA2B009E9E00D7148D;
+			packageReferences = (
+				6FDEABBD2B08CB92006BBCBF /* XCRemoteSwiftPackageReference "PopupView" */,
+			);
 			productRefGroup = 6FDD59B42B009E9E00D7148D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -259,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6FDD59C82B00A00600D7148D /* FavoriteView.swift in Sources */,
+				6FDEABC12B08CC11006BBCBF /* Toast.swift in Sources */,
 				6FDD59B92B009E9E00D7148D /* ContentView.swift in Sources */,
 				6FDD59DD2B00BE3E00D7148D /* TaskListItemView.swift in Sources */,
 				6FB415482B05116D006FD091 /* FavoriteButton.swift in Sources */,
@@ -482,6 +494,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6FDEABBD2B08CB92006BBCBF /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6FDEABBE2B08CB92006BBCBF /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6FDEABBD2B08CB92006BBCBF /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6FDD59AB2B009E9E00D7148D /* Project object */;
 }

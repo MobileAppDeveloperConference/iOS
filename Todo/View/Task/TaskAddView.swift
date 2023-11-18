@@ -6,12 +6,18 @@
 //
 
 import SwiftUI
+import PopupView
 
 struct TaskAddView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(TaskManager.self) var taskManager
     
     @State private var isFavorite: Bool = false
+    @State private var showToast: Bool = false {
+        didSet {
+            print("showToast : \(showToast)")
+        }
+    }
     
     @State private var task: String = ""
     @State private var desc: String = ""
@@ -29,6 +35,12 @@ struct TaskAddView: View {
                     .focused($taskFocus)
                     .onSubmit {
                         taskFocus = false
+                    }
+                    .onChange(of: task) { oldValue, newValue in
+                        if newValue.count > 29 {
+                            showToast = newValue.count > 29
+                            task = String(task.dropLast())
+                        }
                     }
                 
                 TextField("원한다면 투두에 설명도 추가할 수 있어요.", text: $desc, axis: .vertical)
@@ -49,6 +61,7 @@ struct TaskAddView: View {
                         .foregroundStyle(Color.Todo.black)
                     Button {
                         isFavorite.toggle()
+                        showToast.toggle()
                     } label: {
                         Image(isFavorite ? "ic_tap_star_fill" : "ic_tap_star")
                             .foregroundStyle(isFavorite ? Color.Todo.red : Color.Todo.black)
@@ -63,10 +76,20 @@ struct TaskAddView: View {
                         taskManager.save(task: taskModel)
                         dismiss()
                     }
-                    
                 }
             }
             .padding(EdgeInsets(top: 32, leading: 16, bottom: 16, trailing: 16))
+        }
+        .popup(isPresented: $showToast) {
+            Toast(message: "이제는 더이상 입력할 곳이 없다")
+        } customize: {
+            $0
+                .type (.floater())
+                .position(.bottom)
+                .autohideIn(2)
+                .dismissCallback {
+                    showToast = false
+                }
         }
     }
 }
@@ -74,3 +97,4 @@ struct TaskAddView: View {
 #Preview {
     TaskAddView()
 }
+
