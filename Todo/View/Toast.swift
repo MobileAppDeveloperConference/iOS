@@ -16,7 +16,7 @@ struct Toast: View {
             Text(message)
                 .frame(height: 48, alignment: .center)
                 .frame(maxWidth: .infinity)
-                .foregroundStyle(Color.Todo.show)
+                .foregroundStyle(Color.Todo.snow)
                 .font(.Todo.r16)
                 .background(
                     RoundedRectangle(cornerRadius: 8)

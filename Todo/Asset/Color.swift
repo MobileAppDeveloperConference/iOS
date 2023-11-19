@@ -9,7 +9,7 @@ import SwiftUI
 
 extension Color {
     struct Todo {
-        static let show: Color = Color(hex: "#FFFFFF")
+        static let snow: Color = Color(hex: "#FFFFFF")
         static let black: Color = Color(hex: "#000000")
         static let grayGuGu: Color = Color(hex: "#999999")
         static let grayAbby: Color = Color(hex: "#ABABAB")

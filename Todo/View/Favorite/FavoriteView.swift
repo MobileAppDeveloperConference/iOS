@@ -78,7 +78,7 @@ struct FavoriteView: View {
                         Text(isShowDoneTaskButtonTitle)
                             .padding(EdgeInsets(top: 8, leading: 10, bottom: 8, trailing: 10))
                             .font(.Todo.m13)
-                            .foregroundStyle(Color.Todo.show)
+                            .foregroundStyle(Color.Todo.snow)
                             .background(
                                 RoundedRectangle(cornerRadius: 3)
                                     .fill(isShowDoneTask ? Color.Todo.black : Color.Todo.red)
