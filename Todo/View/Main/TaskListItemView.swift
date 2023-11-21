@@ -29,6 +29,7 @@ struct TaskListItemView: View {
                 
                 FavoriteButton(isFavorite: $taskManager.tasks[taskIndex].isFavorite)
             }
+            .padding([.leading, .trailing], 16)
             .frame(height: 64)
         }
     }

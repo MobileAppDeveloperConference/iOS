@@ -9,12 +9,14 @@ import SwiftUI
 
 struct MainView: View {
     @Environment(TaskManager.self) var taskManager
+    
+    @State private var showFAB: Bool = true
     @State private var isShowDoneTask: Bool = true
     
-    var tasks: [TaskModel] { taskManager.tasks.filter { $0.isDone == false } }
-    var doneTasks: [TaskModel] {taskManager.tasks.filter { $0.isDone == true } }
+    private var tasks: [TaskModel] { taskManager.tasks.filter { $0.isDone == false } }
+    private var doneTasks: [TaskModel] {taskManager.tasks.filter { $0.isDone == true } }
     
-    var isShowDoneTaskButtonTitle: String {
+    private var isShowDoneTaskButtonTitle: String {
         isShowDoneTask ? "완료 숨기기" : "완료 보기"
     }
     
@@ -28,18 +30,23 @@ struct MainView: View {
                         TaskEmptyView()
                     } else {
                         ForEach(tasks) { task in
-                            NavigationLink {
-                                TaskEditView(task: task)
-                            } label: {
+                            ZStack {
+                                NavigationLink {
+                                    TaskEditView(task: task)
+                                } label: {
+                                    EmptyView()
+                                }
+                                .swipeActions {
+                                    Button("삭제") {
+                                        taskManager.delete(task: task)
+                                    }.tint(Color.Todo.red)
+                                }
+                                .opacity(0)
+                                
                                 TaskListItemView(task: task)
                             }
                             .listRowSeparator(.hidden)
                             .listRowInsets(EdgeInsets())
-                            .swipeActions {
-                                Button("삭제") {
-                                    taskManager.delete(task: task)
-                                }.tint(Color.Todo.red)
-                            }
                         }
                     }
                 } header: {
@@ -51,18 +58,23 @@ struct MainView: View {
                 if isShowDoneTask {
                     Section {
                         ForEach(doneTasks) { task in
-                            NavigationLink {
-                                TaskEditView(task: task)
-                            } label: {
+                            ZStack {
+                                NavigationLink {
+                                    TaskEditView(task: task)
+                                } label: {
+                                    EmptyView()
+                                }
+                                .swipeActions {
+                                    Button("삭제") {
+                                        taskManager.delete(task: task)
+                                    }.tint(Color.Todo.red)
+                                }
+                                .opacity(0)
+                                
                                 TaskListItemView(task: task)
                             }
                             .listRowSeparator(.hidden)
                             .listRowInsets(EdgeInsets())
-                            .swipeActions {
-                                Button("삭제") {
-                                    taskManager.delete(task: task)
-                                }.tint(Color.Todo.red)
-                            }
                         }
                     } header: {
                         Text("완료")
@@ -96,9 +108,18 @@ struct MainView: View {
                     }
                 }
             }
+            .onAppear {
+                showFAB = true
+            }
+            .onDisappear {
+                showFAB = false
+            }
         }
         .scrollContentBackground(.hidden)
-        .overlay(CircleButton().offset(x: -24, y: -24), alignment: .bottomTrailing)
+        .overlay(
+            showFAB ? CircleButton().offset(x: -24, y: -24) : nil,
+            alignment: .bottomTrailing
+        )
     }
 }
 
