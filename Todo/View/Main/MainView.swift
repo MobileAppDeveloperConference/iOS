@@ -33,6 +33,8 @@ struct MainView: View {
                             } label: {
                                 TaskListItemView(task: task)
                             }
+                            .listRowSeparator(.hidden)
+                            .listRowInsets(EdgeInsets())
                             .swipeActions {
                                 Button("삭제") {
                                     taskManager.delete(task: task)
@@ -40,9 +42,10 @@ struct MainView: View {
                             }
                         }
                     }
-                    
                 } header: {
                     Text("하는 중")
+                        .font(.Todo.sb16)
+                        .foregroundStyle(Color.Todo.black)
                 }
                 
                 if isShowDoneTask {
@@ -52,18 +55,25 @@ struct MainView: View {
                                 TaskEditView(task: task)
                             } label: {
                                 TaskListItemView(task: task)
-                                    .swipeActions {
-                                        Button("삭제") {
-                                            taskManager.delete(task: task)
-                                        }.tint(Color.Todo.red)
-                                    }
+                            }
+                            .listRowSeparator(.hidden)
+                            .listRowInsets(EdgeInsets())
+                            .swipeActions {
+                                Button("삭제") {
+                                    taskManager.delete(task: task)
+                                }.tint(Color.Todo.red)
                             }
                         }
                     } header: {
                         Text("완료")
+                            .font(.Todo.sb16)
+                            .foregroundStyle(Color.Todo.black)
                     }
                 }
             }
+            .listStyle(.plain)
+            .padding([.leading, .trailing], 16)
+            .background(Color.Todo.lightblue)
             .buttonStyle(.borderless) // 리스트에서 아이템을 탭했을때 모든 버튼들이 이벤트를 동시에 받는 것을 방지
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -84,10 +94,10 @@ struct MainView: View {
                                     .fill(isShowDoneTask ? Color.Todo.black : Color.Todo.red)
                             )
                     }
-
                 }
             }
         }
+        .scrollContentBackground(.hidden)
         .overlay(CircleButton().offset(x: -24, y: -24), alignment: .bottomTrailing)
     }
 }

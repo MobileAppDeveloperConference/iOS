@@ -21,7 +21,7 @@ struct TaskListItemView: View {
             HStack {
                 DoneButton(isDone: $taskManager.tasks[taskIndex].isDone)
                 
-                Text("\(taskIndex) : \(task.task)")
+                Text("\(task.task)")
                     .font(.Todo.r16)
                     .lineLimit(1)
                 
@@ -29,6 +29,7 @@ struct TaskListItemView: View {
                 
                 FavoriteButton(isFavorite: $taskManager.tasks[taskIndex].isFavorite)
             }
+            .frame(height: 64)
         }
     }
 }

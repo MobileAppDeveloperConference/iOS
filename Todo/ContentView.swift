@@ -35,6 +35,7 @@ struct ContentView: View {
                 .tag(1)
         }
         .accentColor(.Todo.black)
+        .background(Color.Todo.lightblue)
     }
 }
 
