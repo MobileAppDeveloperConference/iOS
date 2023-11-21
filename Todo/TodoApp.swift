@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct TodoApp: App {
-    @State private var taskManager = TaskManager()
+    @State private var taskManager = TaskManager(repo: MemoryTaskRepository())
     
     var body: some Scene {
         WindowGroup {
